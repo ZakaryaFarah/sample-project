@@ -15,8 +15,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      
-      - name: Run soccer script
-        run: node soccer.js
 
-
+      - name: Run soccer script and save output
+        run: |
+          mkdir -p soccer-deploy
+          node soccer.js >soccer-deploy/output.txt
+        
+      - name: Show deployment result
+        run: cat soccer-deploy/output.txt
